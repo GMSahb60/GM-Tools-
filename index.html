@@ -1,1 +1,127 @@
-Hy
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GM TikTok & Instagram Rewards</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background: #f8f9fa;
+    margin: 0; padding: 0;
+}
+header {
+    background: #ff0050;
+    color: white;
+    padding: 15px 0;
+}
+.container {
+    max-width: 700px;
+    margin: 20px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+input, button {
+    padding: 10px;
+    font-size: 16px;
+    margin: 5px 0;
+    width: 80%;
+}
+button {
+    background: #ff0050;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+button:hover { opacity: 0.9; }
+iframe {
+    margin-top: 15px;
+    width: 100%;
+    height: 500px;
+    border-radius: 10px;
+}
+#coins {
+    font-size: 20px;
+    margin: 15px 0;
+    color: #ff0050;
+    font-weight: bold;
+}
+footer {
+    margin-top: 20px;
+    font-size: 14px;
+    color: gray;
+}
+</style>
+</head>
+<body>
+
+<header>
+<h1>GM TikTok & Instagram Rewards</h1>
+</header>
+
+<div class="container">
+    <h2>Enter Video Link (TikTok/Instagram)</h2>
+    <input type="text" id="videoLink" placeholder="https://www.tiktok.com/@user/video/1234567890">
+    <button onclick="loadVideo()">Load Video</button>
+
+    <div id="player"></div>
+
+    <div id="coins">Coins: 0</div>
+    <button onclick="redeemCoins()">Redeem Coins (JazzCash/Easypaisa)</button>
+</div>
+
+<footer>
+&copy; 2026 GM Official
+</footer>
+
+<script>
+let coins = 0;
+
+function loadVideo() {
+    let link = document.getElementById('videoLink').value;
+    if(!link) {
+        alert("Please enter a video link!");
+        return;
+    }
+
+    let embedLink = "";
+
+    // TikTok Embed
+    if(link.includes("tiktok.com")) {
+        embedLink = link.replace("www.tiktok.com", "www.tiktok.com/embed");
+    }
+    // Instagram Embed
+    else if(link.includes("instagram.com")) {
+        embedLink = link.replace("/p/", "/embed/");
+    }
+    else {
+        alert("Only TikTok or Instagram links allowed!");
+        return;
+    }
+
+    document.getElementById('player').innerHTML = `<iframe src="${embedLink}" frameborder="0" allowfullscreen></iframe>`;
+
+    // Add coins after video load
+    coins += 10; // 10 coins per video
+    document.getElementById('coins').innerText = "Coins: " + coins;
+}
+
+// Redeem coins (placeholder)
+function redeemCoins() {
+    if(coins <= 0) {
+        alert("You have no coins to redeem!");
+        return;
+    }
+    let amount = coins * 0.1; // Example: 1 coin = 0.1 currency
+    alert("You can redeem " + amount + " PKR via JazzCash/Easypaisa! (Integration needed)");
+    coins = 0;
+    document.getElementById('coins').innerText = "Coins: " + coins;
+}
+</script>
+
+</body>
+</html>Hy
